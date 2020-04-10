@@ -12,7 +12,7 @@ class WechatsController < ApplicationController
   on :text, with: 'me' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.where(:openid=>openid)
+    messages = Message.where(:openid=>openid.to_s)
     data = messages.map do |message| 
       "#{message.created_at} \n #{message.body} \n" 
     end
@@ -23,7 +23,7 @@ class WechatsController < ApplicationController
   on :text, with: 'ta' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.where.not(:openid=>openid).limit(10)
+    messages = Message.where.not(:openid=>openid.to_s).limit(10)
     data = messages.map do |message| 
       "#{message.created_at} \n #{message.body} \n" 
     end
