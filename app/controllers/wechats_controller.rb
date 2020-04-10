@@ -4,7 +4,7 @@ class WechatsController < ApplicationController
 
   on :text do |request, content|
     openid = request[:FromUserName]
-    Message.create({openid: opeind,title: openid,:body => content,:body_html => content})
+    Message.create({openid: openid,title: openid,:body => content,:body_html => content})
     request.reply.text "收到你的秘密，我已经把他藏了起来" # Just echo
   end
 
