@@ -5,7 +5,7 @@ class WechatsController < ApplicationController
   on :text do |request, content|
     openid = request[:FromUserName]
     Message.create({openid: openid,title: openid,:body => content,:body_html => content})
-    request.reply.text "收到你的秘密，我已经把他藏了起来\n发送 me 查看我的秘密\发送 ta 查看ta的秘密" # Just echo
+    request.reply.text "收到你的秘密，我已经把他藏了起来\n发送 me 查看我的秘密\n发送 ta 查看ta的秘密" # Just echo
   end
 
 
@@ -16,6 +16,7 @@ class WechatsController < ApplicationController
     data = messages.map do |message| 
       "#{message.created_at} \n #{message.body} \n" 
     end
+    puts data
     request.reply.text data #回复帮助信息
   end
 
@@ -26,6 +27,8 @@ class WechatsController < ApplicationController
     data = messages.map do |message| 
       "#{message.created_at} \n #{message.body} \n" 
     end
+
+    puts data
     request.reply.text data #回复帮助信息
   end
 
