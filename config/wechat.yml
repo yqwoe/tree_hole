@@ -1,6 +1,6 @@
 default: &default
   corpid: "wx7464622ccd4055fb"
-  corpsecret: "wx7464622ccd4055fb"
+  corpsecret: "83b17bf7828203dd9557ce8ec1eb867b"
   agentid: 1
   # Or if using public account, only need above two line
   #  appid: "my_appid"
@@ -13,7 +13,7 @@ default: &default
 
 production:
   corpid: "wx7464622ccd4055fb"
-  corpsecret: "wx7464622ccd4055fb"
+  corpsecret: "83b17bf7828203dd9557ce8ec1eb867b"
   agentid: 1
   # Or if using public account, only need above two line
   #  appid: "my_appid"
