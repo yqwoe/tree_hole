@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :wechat, only: [:show, :create]
   root to: 'home#index'
 
    

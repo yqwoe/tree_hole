@@ -46,6 +46,8 @@ gem 'capistrano-rails'
 gem 'capistrano-rvm'
 end
 
-
+gem 'capistrano-puma'
+gem 'puma_worker_killer'
+gem 'wechat'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
