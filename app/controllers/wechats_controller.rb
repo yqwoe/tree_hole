@@ -9,6 +9,21 @@ class WechatsController < ApplicationController
   end
 
 
+  on :text, with: 'me' do |request|
+
+    openid = request[:FromUserName]
+    messages = Message.where(:openid=>openid)
+    request.reply.text messages.map{|message| "#{message.created_at} \n #{message.body} \n" } #回复帮助信息
+  end
+
+  on :text, with: 'ta' do |request|
+
+    openid = request[:FromUserName]
+    messages = Message.where.not(:openid=>openid).limit(10)
+    request.reply.text messages.map{|message| "#{message.created_at} \n #{message.body} \n" } #回复帮助信息
+  end
+
+
   # 当用户加关注
   on :event, with: 'subscribe' do |request|
     openid = request[:FromUserName]
@@ -26,4 +41,14 @@ class WechatsController < ApplicationController
     request.reply.success # user can not receive this message
   end
 
+
+  # 成员进入应用的事件推送
+  on :event, with: 'enter_agent' do |request|
+    request.reply.text "发送 me 查看我的秘密\发送 ta 查看ta的秘密"
+  end
+
 end
+
+
+
+
