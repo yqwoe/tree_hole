@@ -3,14 +3,22 @@ class WechatsController < ApplicationController
   wechat_responder
 
   on :text do |request, content|
-    puts request.to_s
-    request.reply.text "echo: #{content}" # Just echo
+    openid = request[:FromUserName]
+    Message.create({openid: opeind,title: openid,:body => content,:body_html => content})
+    request.reply.text "收到你的秘密，我已经把他藏了起来" # Just echo
   end
 
 
   # 当用户加关注
   on :event, with: 'subscribe' do |request|
-    request.reply.text "亲爱的,#{request[:FromUserName]} ! 欢迎回家"
+    openid = request[:FromUserName]
+    @user = User.find_by_openid(openid)
+    
+    if @user.nil?
+      @user = user.create({openid: openid})
+    end
+
+    request.reply.text "亲爱的,#{@user.nick} ! 欢迎回家"
   end
 
   # 当用户取消关注订阅

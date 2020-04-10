@@ -47,6 +47,8 @@ gem 'capistrano-rvm'
 gem 'capistrano3-puma', '3.1.1'
 end
 
+gem 'chinese_name'
+
 gem 'puma_worker_killer'
 gem 'wechat'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

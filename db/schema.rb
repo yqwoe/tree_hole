@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_063245) do
+ActiveRecord::Schema.define(version: 2020_04_10_092814) do
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_04_10_063245) do
     t.text "body_html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "openid"
+    t.index ["openid"], name: "index_messages_on_openid"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
