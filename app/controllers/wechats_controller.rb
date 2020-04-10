@@ -15,7 +15,7 @@ class WechatsController < ApplicationController
     @user = User.find_by_openid(openid)
     
     if @user.nil?
-      @user = user.create({openid: openid})
+      @user = User.create({openid: openid})
     end
 
     request.reply.text "亲爱的,#{@user.nick} ! 欢迎回家"
