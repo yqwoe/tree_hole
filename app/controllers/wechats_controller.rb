@@ -13,14 +13,20 @@ class WechatsController < ApplicationController
 
     openid = request[:FromUserName]
     messages = Message.where(:openid=>openid)
-    request.reply.text messages.map{|message| "#{message.created_at} \n #{message.body} \n" } #回复帮助信息
+    data = messages.map do |message| 
+      "#{message.created_at} \n #{message.body} \n" 
+    end
+    request.reply.text data #回复帮助信息
   end
 
   on :text, with: 'ta' do |request|
 
     openid = request[:FromUserName]
     messages = Message.where.not(:openid=>openid).limit(10)
-    request.reply.text messages.map{|message| "#{message.created_at} \n #{message.body} \n" } #回复帮助信息
+    data = messages.map do |message| 
+      "#{message.created_at} \n #{message.body} \n" 
+    end
+    request.reply.text data #回复帮助信息
   end
 
 
