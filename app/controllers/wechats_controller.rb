@@ -3,8 +3,8 @@ class WechatsController < ApplicationController
   wechat_responder
 
   on :text do |request, content|
-    puts request
-    request.reply.text "echo: #{JSON.stringfy(request)} #{content}" # Just echo
+    puts request.to_s
+    request.reply.text "echo: #{content}" # Just echo
   end
 
 
