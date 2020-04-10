@@ -48,7 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: 123456
+  socket: /tmp/mysql.sock
   database: tree_hole_production
-  username: tree_hole
-  password: <%= ENV['TREE_HOLE_DATABASE_PASSWORD'] %>
