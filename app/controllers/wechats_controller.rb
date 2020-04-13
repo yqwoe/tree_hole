@@ -12,26 +12,25 @@ class WechatsController < ApplicationController
   on :text, with: 'me' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.where(:openid=>openid.to_s)
-    # data = messages.map do |message| 
-    #   "#{message.created_at} \n #{message.body} \n" 
-    # end
-    # puts data
-    Rails.logger.info messages.to_json
-    request.reply.text messages.to_json #回复帮助信息
+    messages = Message.order("created_at desc").where(:openid=>openid.to_s).limit(10)
+    data = messages.map do |message| 
+      "#{message.created_at} \n #{message.body} \n" 
+    end
+    puts data
+    Rails.logger.info data.to_json
+    request.reply.text data.to_json #回复帮助信息
   end
 
   on :text, with: 'ta' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.where.not(:openid=>openid.to_s).limit(10)
-    # data = messages.map do |message| 
-    #   "#{message.created_at} \n #{message.body} \n" 
-    # end
-
-    # puts data
-    Rails.logger.info messages.to_json
-    request.reply.text messages.to_json #回复帮助信息
+    messages = Message.order("created_at desc").where.not(:openid=>openid.to_s).limit(10)
+    data = messages.map do |message| 
+      "#{message.created_at} \n #{message.body} \n" 
+    end
+    puts data
+    Rails.logger.info data.to_json
+    request.reply.text data.to_json #回复帮助信息
   end
 
 
