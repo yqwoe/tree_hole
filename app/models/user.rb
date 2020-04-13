@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
 
     before_validation :normalize_name, on: :create
-
+    has_many :messages, class_name: "Message", foreign_key: "openid",primary_key: 'openid'
 
     private
     def normalize_name

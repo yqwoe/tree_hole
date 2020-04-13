@@ -12,7 +12,7 @@ class WechatsController < ApplicationController
   on :text, with: 'me' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.includes(:user).order("created_at desc").where(:openid=>openid.to_s).limit(10)
+    messages = Message.includes(:user).order("created_at desc").where(:openid=>"olEtUuJjXS7Gtvtqbm98ji0WeuYQ").limit(10)
     data = messages.map do |message| 
       "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body} @#{user.nick}" 
     end
