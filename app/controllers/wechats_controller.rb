@@ -12,9 +12,9 @@ class WechatsController < ApplicationController
   on :text, with: 'me' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.order("created_at desc").where(:openid=>openid.to_s).limit(10)
+    messages = Message.includes(:user).order("created_at desc").where(:openid=>openid.to_s).limit(10)
     data = messages.map do |message| 
-      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body}" 
+      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body} @#{user.nick}" 
     end
     puts data
     Rails.logger.info data.join("\n").to_s
@@ -24,9 +24,9 @@ class WechatsController < ApplicationController
   on :text, with: 'ta' do |request|
 
     openid = request[:FromUserName]
-    messages = Message.order("created_at desc").where.not(:openid=>openid.to_s).limit(10)
+    messages = Message.includes(:user).order("created_at desc").where.not(:openid=>openid.to_s).limit(10)
     data = messages.map do |message| 
-      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body}" 
+      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body} @#{user.nick}" 
     end
     puts data
     Rails.logger.info data.join("\n").to_s
