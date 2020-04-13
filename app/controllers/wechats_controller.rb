@@ -16,8 +16,6 @@ class WechatsController < ApplicationController
     data = messages.map do |message| 
       "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body} @#{message.user.nick}" 
     end
-    puts data
-    Rails.logger.info data.join("\n").to_s
     request.reply.text data.join("\n").to_s  if data.length > 0  #回复帮助信息
   end
 
@@ -28,8 +26,6 @@ class WechatsController < ApplicationController
     data = messages.map do |message| 
       "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body} @#{message.user.nick}" 
     end
-    puts data
-    Rails.logger.info data.join("\n").to_s
     request.reply.text data.join("\n").to_s  if data.length > 0 #回复帮助信息
   end
 
