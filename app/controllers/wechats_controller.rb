@@ -17,7 +17,8 @@ class WechatsController < ApplicationController
     #   "#{message.created_at} \n #{message.body} \n" 
     # end
     # puts data
-    request.reply.text messages.as_json #回复帮助信息
+    Rails.logger.info messages.to_json
+    request.reply.text messages.to_json #回复帮助信息
   end
 
   on :text, with: 'ta' do |request|
@@ -29,7 +30,8 @@ class WechatsController < ApplicationController
     # end
 
     # puts data
-    request.reply.text messages.as_json #回复帮助信息
+    Rails.logger.info messages.to_json
+    request.reply.text messages.to_json #回复帮助信息
   end
 
 
