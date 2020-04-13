@@ -14,11 +14,11 @@ class WechatsController < ApplicationController
     openid = request[:FromUserName]
     messages = Message.order("created_at desc").where(:openid=>openid.to_s).limit(10)
     data = messages.map do |message| 
-      "#{message.created_at} \n #{message.body} \n" 
+      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body}" 
     end
     puts data
-    Rails.logger.info data.to_json
-    request.reply.text data.to_json #回复帮助信息
+    Rails.logger.info data.join("\n").to_s
+    request.reply.text data.join("\n").to_s  if data.length > 0  #回复帮助信息
   end
 
   on :text, with: 'ta' do |request|
@@ -26,11 +26,11 @@ class WechatsController < ApplicationController
     openid = request[:FromUserName]
     messages = Message.order("created_at desc").where.not(:openid=>openid.to_s).limit(10)
     data = messages.map do |message| 
-      "#{message.created_at} \n #{message.body} \n" 
+      "#{message.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s} : #{message.body}" 
     end
     puts data
-    Rails.logger.info data.to_json
-    request.reply.text data.to_json #回复帮助信息
+    Rails.logger.info data.join("\n").to_s
+    request.reply.text data.join("\n").to_s  if data.length > 0 #回复帮助信息
   end
 
 
@@ -43,7 +43,7 @@ class WechatsController < ApplicationController
       @user = User.create({openid: openid})
     end
 
-    request.reply.text "亲爱的,#{@user.nick} ! 欢迎回家"
+    request.reply.text "亲爱的,#{@user.nick} ! 欢迎回家\n发送 me 查看我的秘密\n发送 ta 查看ta的秘密"
   end
 
   # 当用户取消关注订阅
