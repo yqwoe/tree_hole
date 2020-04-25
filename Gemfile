@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
-gem 'puma', '>= 3.1.1'
+gem 'puma', '>= 3.12.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -44,7 +44,7 @@ gem 'capistrano-rails'
 # gem 'capistrano-rbenv'
 # Add this if you're using rvm
 gem 'capistrano-rvm'
-gem 'capistrano3-puma', '3.1.1'
+gem 'capistrano3-puma'
 end
 
 gem 'chinese_name'
