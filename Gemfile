@@ -44,7 +44,7 @@ gem 'capistrano-rails'
 # gem 'capistrano-rbenv'
 # Add this if you're using rvm
 gem 'capistrano-rvm'
-gem 'capistrano3-puma', '3.1.1'
+gem 'capistrano3-puma', '>= 3.1.1'
 end
 
 gem 'chinese_name'
