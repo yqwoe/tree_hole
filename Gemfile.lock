@@ -179,7 +179,7 @@ GEM
     unf_ext (0.0.7.7)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     wechat (0.11.8)
       activesupport (>= 3.2, < 7)
       http (>= 1.0.4, < 5)
